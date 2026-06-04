@@ -53,6 +53,7 @@ The goal is private, censorship‑resistant, and secure internet access using **
 - 🧱 **Kill Switch** — if the tunnel drops unexpectedly (e.g. the server restarts) and you haven't pressed Disconnect, internet traffic is blocked until the tunnel is restored or you disconnect — preventing leaks.
 - 🪢 **Split tunneling** — private/LAN ranges (e.g. `192.168.x.x`, `10.x.x.x`) automatically bypass the tunnel, so local devices (FTP server on the phone, router, printers, casting) keep working while connected.
 - ✅ **Whitelist IPs / CIDR** — add single IPs or CIDR blocks in *Advanced Settings* to bypass the tunnel on demand.
+- 📲 **Per-App Split Tunneling** — a dedicated *Per-App Split Tun* screen lets you decide which apps use the tunnel. **Route via Tunnel** mode tunnels only the apps you pick, while **Bypass Tunnel** mode tunnels every app except the ones you pick. A searchable list shows your installed apps, each with its own toggle. Apps kept off the tunnel are also exempt from the Kill Switch, so they keep normal connectivity at all times.
 - 🔁 **Auto‑Reconnect** — automatically reconnects with smart exponential backoff if the connection drops.
 - 📜 **Real‑time in‑app logs** — watch exactly what happens behind the scenes, with copy and clear actions.
 - 🗂️ **Multiple named servers** — manage several servers and select the active one with a friendly name.
