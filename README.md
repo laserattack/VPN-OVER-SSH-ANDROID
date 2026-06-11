@@ -1,5 +1,6 @@
 # 🛡️ Abdal 4iProto Android
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20635704.svg)](https://doi.org/10.5281/zenodo.20635704)
 
 📖 [فارسی (Persian)](README.fa.md) | **English**
 
@@ -44,6 +45,7 @@ The goal is private, censorship‑resistant, and secure internet access using **
 
 ## 🚀 Features
 
+- 📡 **Full UDP support** — the UDP transport layer is **fully operational and production-ready**; UDP traffic is handled end-to-end through the tunnel with complete stability, enabling latency-sensitive workloads such as **VoIP**, **online gaming**, **DNS queries**, and **real-time streaming**.
 - 🔐 **SSH‑based 4iProto protocol** — fully encrypted, authenticated tunnel.
 - 📱 **Device‑wide VPN** — routes traffic of all apps using Android's `VpnService` (no root required).
 - 🧩 **Local SOCKS5 bridge over SSH** — a built‑in SOCKS5 proxy forwards connections through SSH `direct-tcpip` channels.
