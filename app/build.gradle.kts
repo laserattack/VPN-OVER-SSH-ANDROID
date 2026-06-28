@@ -15,40 +15,14 @@ android {
     applicationId = "net.abdal.abdal4iproto.client"
     minSdk = 24
     targetSdk = 36
-    versionCode = 70
-    versionName = "7.0"
+    versionCode = 71
+    versionName = "7.1"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
 
-  signingConfigs {
-    create("release") {
-      val keystorePath = System.getenv("KEYSTORE_PATH") ?: "${rootDir}/my-upload-key.jks"
-      storeFile = file("${rootDir}/my-upload-key.jks")
-      storePassword = ""
-      keyAlias = "my-key-alias"
-      keyPassword = ""
-    }
-    create("debugConfig") {
-      storeFile = file("${rootDir}/debug.keystore")
-      storePassword = "android"
-      keyAlias = "androiddebugkey"
-      keyPassword = "android"
-    }
-  }
-
   buildTypes {
-    release {
-      isCrunchPngs = false
-      val enableMinify = (project.findProperty("enableMinify") as? String)?.toBoolean() ?: true
-      // Code shrinking/obfuscation stays enabled by default. Override with
-      // -PenableMinify=false only for diagnostic builds that must bypass R8/ProGuard.
-      isMinifyEnabled = enableMinify
-      proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-      signingConfig = signingConfigs.getByName("release")
-    }
-    debug {
-    }
+    debug { }
   }
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_11
