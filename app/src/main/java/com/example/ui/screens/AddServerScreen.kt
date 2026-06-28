@@ -23,6 +23,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.ContentPaste
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -32,6 +33,8 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import com.example.R
 import com.example.ui.AppViewModel
+import androidx.compose.ui.platform.LocalClipboardManager
+import com.example.util.parseServerData
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -39,11 +42,25 @@ fun AddServerScreen(
     viewModel: AppViewModel,
     onBackClick: () -> Unit
 ) {
+    val clipboardManager = LocalClipboardManager.current
+
     var name by remember { mutableStateOf("") }
     var ip by remember { mutableStateOf("") }
     var port by remember { mutableStateOf("22") }
     var username by remember { mutableStateOf("root") }
     var password by remember { mutableStateOf("") }
+
+    fun pasteFromClipboard() {
+        val clip = clipboardManager.getText()?.text ?: return
+        val parsed = parseServerData(clip)
+        if (parsed != null) {
+            name = parsed.name
+            ip = parsed.ip
+            port = parsed.port.toString()
+            username = parsed.username
+            password = parsed.password
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -55,6 +72,11 @@ fun AddServerScreen(
                             Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = stringResource(R.string.back)
                         )
+                    }
+                },
+                actions = {
+                    IconButton(onClick = { pasteFromClipboard() }) {
+                        Icon(Icons.Default.ContentPaste, contentDescription = "Paste from clipboard")
                     }
                 }
             )

@@ -6,9 +6,11 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.ContentPaste
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -16,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.R
 import com.example.ui.AppViewModel
+import com.example.util.parseServerData
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -24,6 +27,7 @@ fun EditServerScreen(
     viewModel: AppViewModel,
     onBackClick: () -> Unit
 ) {
+    val clipboardManager = LocalClipboardManager.current
     val servers by viewModel.allServers.collectAsStateWithLifecycle()
     val server = servers.find { it.id == serverId }
 
@@ -38,6 +42,18 @@ fun EditServerScreen(
     var username by remember(server) { mutableStateOf(server.username) }
     var password by remember(server) { mutableStateOf(server.password) }
 
+    fun pasteFromClipboard() {
+        val clip = clipboardManager.getText()?.text ?: return
+        val parsed = parseServerData(clip)
+        if (parsed != null) {
+            name = parsed.name
+            ip = parsed.ip
+            port = parsed.port.toString()
+            username = parsed.username
+            password = parsed.password
+        }
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -48,6 +64,11 @@ fun EditServerScreen(
                             Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = stringResource(R.string.back)
                         )
+                    }
+                },
+                actions = {
+                    IconButton(onClick = { pasteFromClipboard() }) {
+                        Icon(Icons.Default.ContentPaste, contentDescription = "Paste from clipboard")
                     }
                 }
             )
