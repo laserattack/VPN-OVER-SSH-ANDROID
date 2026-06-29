@@ -38,7 +38,7 @@ fun ServerManagementScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(stringResource(R.string.server_management), fontWeight = FontWeight.Bold) },
+                title = { Text(stringResource(R.string.server_management)) },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
                         Icon(
@@ -52,10 +52,6 @@ fun ServerManagementScreen(
                         Icon(Icons.Default.Add, contentDescription = stringResource(R.string.add_server))
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.background,
-                    titleContentColor = MaterialTheme.colorScheme.primary
-                )
             )
         }
     ) { padding ->

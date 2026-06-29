@@ -230,7 +230,7 @@ fun HomeScreen(
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text(stringResource(R.string.app_name), fontWeight = FontWeight.Bold) },
+                    title = { Text(stringResource(R.string.app_name)) },
                     navigationIcon = {
                         IconButton(onClick = { scope.launch { drawerState.open() } }) {
                             Icon(Icons.Default.Menu, contentDescription = stringResource(R.string.drawer_menu))
@@ -244,10 +244,6 @@ fun HomeScreen(
                             )
                         }
                     },
-                    colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = MaterialTheme.colorScheme.background,
-                        titleContentColor = MaterialTheme.colorScheme.primary
-                    )
                 )
             },
         floatingActionButton = {

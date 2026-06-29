@@ -33,7 +33,7 @@ fun AdvancedSettingsScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(stringResource(R.string.advanced_settings), fontWeight = FontWeight.Bold) },
+                title = { Text(stringResource(R.string.advanced_settings)) },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
                         Icon(
@@ -42,10 +42,6 @@ fun AdvancedSettingsScreen(
                         )
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.background,
-                    titleContentColor = MaterialTheme.colorScheme.primary
-                )
             )
         }
     ) { padding ->
